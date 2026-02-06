@@ -1,1 +1,1 @@
-Loadstring(https://raw.githubusercontent.com/qweaad1/qweScript/refs/heads/main/ValentainEvent)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/qweaad1/qweScript/refs/heads/main/ValentainEvent"))()
