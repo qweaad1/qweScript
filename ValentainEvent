@@ -1,4 +1,6 @@
-  if humanoidRootPart.Position.Y >= 100 do
+  if humanoidRootPart.Position.Y >= 100 then
+	  
+
       
     
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9027.85, 6529.48, -8996.04)
