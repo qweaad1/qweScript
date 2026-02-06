@@ -1,11 +1,14 @@
-
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9027.85, 6529.48, -8966.04)
+  if humanoidRootPart.Position.Y >= 100 do
+      
+    
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9027.85, 6529.48, -8996.04)
+wait(2) 
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9027.85, 6529.48, -8960.04)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9027.85, 6529.48, -8959.04)
 
 local character = game.Players.LocalPlayer.Character
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-
+end
 
 local function checkHeight()
     while humanoidRootPart.Position.Y >= 100 do
