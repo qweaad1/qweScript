@@ -1,5 +1,5 @@
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9027.85, 6529.48, -8961.04)
-wait(0.2)
+wait(2)
 local Humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid");
 Humanoid:MoveTo(Vector3.new(-9023.85, 6529.48, -8959.04))
 wait(1)
