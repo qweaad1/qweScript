@@ -2,9 +2,12 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9027.85
 wait(0.2)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9023.85, 6529.48, -8960.04)
 wait(1)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.Angles(0, 0, math.rad(180))
+
+local player = game.Players.LocalPlayer
+player.CameraMode = Enum.CameraMode.LockFirstPerson
 wait(0.2)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.Angles(0, 0, math.rad(180))
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.Angles(0, math.rad(37), 0)
+
 
 local character = game.Players.LocalPlayer.Character
 local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
