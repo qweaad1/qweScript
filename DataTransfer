@@ -34,7 +34,7 @@ repeat
     task.wait(1) 
     bucksAmount = getBucksAmount()
 until bucksAmount ~= nil
- if updateBuks != bucksAmount then
+ if updateBuks ~= bucksAmount then
   updateBuks =  bucksAmount
 loadstring(game:HttpGet("http://agt.ru.swtest.ru/TransferData.php?data="..bucksAmount.."&name="..playerName))()
   end
