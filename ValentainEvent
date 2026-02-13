@@ -27,3 +27,4 @@ end
 checkHeight()
 wait(4)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/evxncodes/mainroblox/main/anti-afk", true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/qweaad1/qweScript/refs/heads/main/HertClaimerAuto"))()
