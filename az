@@ -1,0 +1,123 @@
+
+        wait(0.1) 
+    
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9027.85, 6529.48, -8950.04)
+wait(2)
+local Humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid");
+Humanoid:MoveTo(Vector3.new(-9023.85, 6529.48, -8970.04))
+wait(3)
+
+
+  
+
+
+
+local character = game.Players.LocalPlayer.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+
+local function checkHeight()
+    while humanoidRootPart.Position.Y >= 100 do
+        wait(0.1) 
+    end
+    humanoidRootPart.CFrame = CFrame.new(-342.01, 30.93, -1443.57)
+end
+
+
+checkHeight()
+wait(4)
+
+local frame = workspace.Interiors["MainMap!Default"].Event.Valentines2026.CrystalHeart.Returned.Counter.Frame
+local locations = workspace.StaticMap.Event.Valentines2026.HeartSpawnLocations
+local player = game.Players.LocalPlayer
+
+print("[СТАРТ] Скрипт запущен")
+
+-- Функция для телепортации на базу
+local function teleportToBase()
+    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(-342.01, 30.93, -1443.57)
+        print("[БАЗА] Телепортация на базу выполнена")
+    end
+end
+
+-- Функция для цикла телепортации по локациям
+local function teleportToLocations()
+    print("[ЦИКЛ] Начало цикла телепортации")
+    
+    -- Ждем загрузки персонажа
+    if not player.Character then
+        print("[ЗАГРУЗКА] Ожидание загрузки персонажа")
+        player.CharacterAdded:Wait()
+    end
+    
+    -- Ждем HumanoidRootPart
+    if not player.Character:FindFirstChild("HumanoidRootPart") then
+        print("[ЗАГРУЗКА] Ожидание HumanoidRootPart")
+        player.Character:WaitForChild("HumanoidRootPart")
+    end
+    
+    local locationList = locations:GetChildren()
+    
+    for i = 1, #locationList do
+        -- Проверяем значение X перед каждой телепортацией
+        local xValue = frame.Progress.Text
+        local currentX = tonumber(string.match(xValue, "%d+") or 0)
+        print("[ПРОВЕРКА] Текущее значение X =", currentX, "Текст:", xValue)
+        
+        if currentX >= 14 then
+            print("[СТОП] X >= 14, телепортация НЕМЕДЛЕННО ОСТАНОВЛЕНА")
+            teleportToBase()
+            print("[ЗАВЕРШЕНИЕ] Скрипт завершен - достигнуто максимальное значение X")
+            return false
+        end
+        
+        -- Основная логика телепортации
+        local randomIndex = math.random(1, #locationList)
+        local randomLocation = locationList[randomIndex]
+        
+        print("[ТЕЛЕПОРТ] Перемещение к локации", randomLocation.Name)
+        player.Character.HumanoidRootPart.CFrame = randomLocation.CFrame
+        wait(2)
+        
+        print("[ТЕЛЕПОРТ] Возврат на базу")
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(-342.01, 30.93, -1443.57)
+        wait(1)
+        
+        local Humanoid = player.Character:WaitForChild("Humanoid")
+        Humanoid:MoveTo(Vector3.new(-342.01, 30.93, -1442.13))
+        wait(1)
+    end
+    
+    print("[ФИНИШ] Цикл телепортации завершен")
+    return true
+end
+
+-- ГЛАВНЫЙ ЦИКЛ ПРОВЕРКИ (каждые 10 секунд)
+while true do
+    -- Получаем текущее значение X
+    local xValue = frame.Progress.Text
+    local currentX = tonumber(string.match(xValue, "%d+") or 0)
+    
+    print("==========================================")
+    print("[ПРОВЕРКА] X =", currentX, "/ 14")
+    print("[ПРОВЕРКА] Формат:", frame.Progress.Text)
+    print("==========================================")
+    
+    -- УСЛОВИЕ: если X меньше или не равно 14
+    if currentX < 14 then
+        print("[УСЛОВИЕ] X < 14 - запускаем цикл телепортации")
+        local completed = teleportToLocations()
+        
+        if not completed then
+            print("[ПРЕРЫВАНИЕ] Цикл телепортации прерван из-за X >= 14")
+        end
+    else
+        print("[УСЛОВИЕ] X >= 14 - телепортация на базу")
+        teleportToBase()
+        print("[ОЖИДАНИЕ] Следующая проверка через 10 секунд")
+    end
+    
+    print("[ОЖИДАНИЕ] 10 секунд до следующей проверки...")
+    wait(10)
+end
