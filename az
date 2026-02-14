@@ -1,3 +1,6 @@
+ local character = game.Players.LocalPlayer.Character
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+  if humanoidRootPart.Position.Y >= 100 then 
 local houseExteriors = workspace:FindFirstChild("HouseExteriors")
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -75,8 +78,7 @@ wait(3)
 
 
 
-local character = game.Players.LocalPlayer.Character
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
 
 
 local function checkHeight()
@@ -183,4 +185,5 @@ while true do
     
     print("[ОЖИДАНИЕ] 10 секунд до следующей проверки...")
     wait(10)
+end
 end
