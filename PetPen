@@ -1,0 +1,63 @@
+local houseExteriors = workspace:FindFirstChild("HouseExteriors")
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+if houseExteriors then
+    for _, house in pairs(houseExteriors:GetChildren()) do
+        if tonumber(house.Name) then
+            local micro = house:FindFirstChild("Micro")
+            if micro then
+                local PetPen = micro:FindFirstChild("PetPen")
+                if PetPen then
+                    local Claim = PetPen:FindFirstChild("ClaimArea")
+                    if Claim then
+                        local billboard = Claim:FindFirstChild("BillboardGui")
+                        if billboard then
+                            local textLabel = billboard:FindFirstChild("ClaimLabel")
+                            if textLabel and textLabel:IsA("TextLabel") then
+                                print("Дом " .. house.Name .. ": " .. textLabel.Text)
+                                
+                                -- Проверяем условие и телепортируем игрока
+                                if textLabel.Text == "CLAIM ALL" then
+                                    print("Телепортация к дому " .. house.Name)
+                                    
+                                    -- Получаем позицию ClaimArea
+                                    local claimPosition = Claim.Position
+                                    
+                                    -- Создаем CFrame на 10 студий выше объекта
+                                    local teleportCFrame = CFrame.new(
+                                        claimPosition.X,
+                                        claimPosition.Y + 10, -- +10 студий по Y (вверх)
+                                        claimPosition.Z
+                                    )
+                                    
+                                    -- Телепортируем персонажа игрока
+                                    if character and character:FindFirstChild("HumanoidRootPart") then
+                                        character.HumanoidRootPart.CFrame = teleportCFrame
+                                        print("Игрок телепортирован к дому " .. house.Name)
+                                    else
+                                        print("Персонаж или HumanoidRootPart не найден")
+                                    end
+                                end
+                            else
+                                print("Дом " .. house.Name .. ": ClaimLabel не найден или не является TextLabel")
+                            end
+                        else
+                            print("Дом " .. house.Name .. ": BillboardGui не найден")
+                        end
+                    else
+                        print("Дом " .. house.Name .. ": ClaimArea не найден")
+                    end
+                else
+                    print("Дом " .. house.Name .. ": PetPen не найден")
+                end
+            else
+                print("Дом " .. house.Name .. ": Micro не найден")
+            end
+        end
+    end
+else
+    print("HouseExteriors не найден в Workspace")
+end
+
+print("====================================")
